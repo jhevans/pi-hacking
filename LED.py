@@ -1,3 +1,5 @@
+# Turn an LED on pin 18 (BCM) on and off
+
 import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
