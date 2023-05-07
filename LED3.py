@@ -2,22 +2,32 @@
 
 import RPi.GPIO as GPIO
 import time
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(12,GPIO.OUT)
+
+# Pins definitions
+btn_pin = 4
+led_pin = 12
+
+# Set up pins
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(btn_pin, GPIO.IN)
+GPIO.setup(led_pin, GPIO.OUT)
 
 def button_callback(channel):
     print("Blink blink!")
     
     for _ in range(2):
-        GPIO.output(12,GPIO.HIGH)
+        GPIO.output(led_pin,GPIO.HIGH)
         time.sleep(0.5)
-        GPIO.output(12,GPIO.LOW)
+        GPIO.output(led_pin,GPIO.LOW)
         time.sleep(0.5)
 
-GPIO.setup(10,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(10,GPIO.RISING,callback=button_callback)
+GPIO.add_event_detect(btn_pin,GPIO.RISING,callback=button_callback)
 
-while(True):
-    pass
+try:
+    while(True):
+        pass
+finally:
+    GPIO.cleanup()
 
