@@ -7,7 +7,7 @@ GPIO.setwarnings(False)
 GPIO.setup(12,GPIO.OUT)
 
 def button_callback(channel):
-    print "Blink blink!"
+    print("Blink blink!")
     
     for _ in range(2):
         GPIO.output(12,GPIO.HIGH)
